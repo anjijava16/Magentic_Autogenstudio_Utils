@@ -1,0 +1,215 @@
+/Users/welcome/anaconda3/envs/autogen_0_4/bin/python /Users/welcome/Library/Mobile Documents/com~apple~CloudDocs/Sai_Workspace/lang_server_app/DeepDive_GenAI/autogen_src_new/python/packages/autogen-studio/mangtic_agents/main_mangetic_run.py 
+---------- user ----------
+Can we expect SNOW today in Media PA today?
+---------- MagenticOneOrchestrator ----------
+
+We are working to address the following user request:
+
+Can we expect SNOW today in Media PA today?
+
+
+To answer this request we have assembled the following team:
+
+WebSurfer: 
+    A helpful assistant with access to a web browser.
+    Ask them to perform web searches, open pages, and interact with content (e.g., clicking links, scrolling the viewport, etc., filling in form fields, etc.).
+    It can also summarize the entire page, or answer questions based on the content of the page.
+    It can also be asked to sleep and wait for pages to load, in cases where the pages seem to be taking a while to load.
+
+
+Here is an initial fact sheet to consider:
+
+1. GIVEN OR VERIFIED FACTS
+
+- The request is about the weather in Media, PA.
+
+2. FACTS TO LOOK UP
+
+- Current weather conditions in Media, PA.
+- Weather forecast for Media, PA for today.
+- Historical weather patterns in Media, PA for this time of year.
+- These facts can typically be found on authoritative sources like the National Weather Service, Weather.com, or a local news station's website.
+
+3. FACTS TO DERIVE
+
+- Based on the current weather data and forecast, derive the probability of snowfall today in Media, PA.
+
+4. EDUCATED GUESSES
+
+- Media, PA is located in a region that experiences seasonal changes, including winter weather that could involve snow.
+- If it is currently fall or winter in the northern hemisphere, there might be a higher likelihood for snow compared to other times of the year.
+
+
+Here is the plan to follow as best as possible:
+
+- Ask WebSurfer to search for the current weather conditions and forecast in Media, PA for today.
+- Request WebSurfer to find specific information on the probability of snowfall in Media, PA today, using reliable weather sources like the National Weather Service or Weather.com.
+- Summarize the findings from WebSurfer to ascertain whether snow is expected in Media, PA today based on the current data and forecasts.
+
+---------- MagenticOneOrchestrator ----------
+Please search for the current weather conditions and forecast for Media, PA today, and specifically look for information about the probability of snowfall.
+---------- WebSurfer ----------
+I typed 'Media PA weather forecast' into '0 characters out of 2000'.
+
+ Here is a screenshot of the webpage: [Media PA weather forecast - Search](https://www.bing.com/search?q=Media+PA+weather+forecast&form=QBLH&sp=-1&lq=0&pq=&sc=0-0&qs=n&sk=&cvid=B9A9F7E98FA04B6DAA0E6F82DD7E5E6E&ghsh=0&ghacc=0&ghpl=).
+ The viewport shows 28% of the webpage, and is positioned at the top of the page 
+The following metadata was extracted from the webpage:
+
+{
+    "meta_tags": {
+        "referrer": "origin-when-cross-origin",
+        "SystemEntropyOriginTrialToken": "A5is4nwJJVnhaJpUr1URgj4vvAXSiHoK0VBbM9fawMskbDUj9WUREpa3JzGAo6xd1Cp2voQEG1h6NQ71AsMznU8AAABxeyJvcmlnaW4iOiJodHRwczovL3d3dy5iaW5nLmNvbTo0NDMiLCJmZWF0dXJlIjoiTXNVc2VyQWdlbnRMYXVuY2hOYXZUeXBlIiwiZXhwaXJ5IjoxNzUzNzQ3MjAwLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=",
+        "og:description": "Intelligent search from Bing makes it easier to quickly find what you\u2019re looking for and rewards you.",
+        "og:site_name": "Bing",
+        "og:title": "Media PA weather forecast - Bing",
+        "og:url": "https://www.bing.com/search?q=Media+PA+weather+forecast&form=QBLH&sp=-1&lq=0&pq=&sc=0-0&qs=n&sk=&cvid=B9A9F7E98FA04B6DAA0E6F82DD7E5E6E&ghsh=0&ghacc=0&ghpl=",
+        "fb:app_id": "3732605936979161",
+        "og:image": "http://www.bing.com/sa/simg/facebook_sharing_5.png",
+        "og:type": "website",
+        "og:image:width": "600",
+        "og:image:height": "315"
+    }
+}
+
+The first 50 lines of the page text is:
+
+Skip to content
+Media PA weather forecast
+Deep search
+ALLCOPILOTNEWSIMAGESVIDEOSMAPSSHOPPING
+MORE
+TOOLS
+About 5,560,000 results
+Media, Pennsylvania
+Updated a few minutes ago
+36
+°F
+C
+39°
+27°
+Wind: 18 MPH
+Humidity: 62%
+CloudySun 9, 11:31 AM
+12 PM
+3 PM
+6 PM
+9 PM
+12 AM
+3 AM
+6 AM
+9 AM
+1 AM
+4 AM
+7 AM
+10 AM
+1 PM
+4 PM
+7 PM
+10 PM
+1 AM
+4 AM
+7 AM
+10 AM
+1 PM
+4 PM
+7 PM
+10 PM
+1 AM
+4 AM
+7 AM
+10 AM
+1 PM
+4 PM
+7 PM
+10 PM
+1 AM
+<image>
+---------- MagenticOneOrchestrator ----------
+Please look for specific details on the probability of snowfall today in Media, PA from a reliable weather site.
+---------- WebSurfer ----------
+I clicked 'The Weather Channel'.
+
+ Here is a screenshot of the webpage: [10-Day Weather Forecast for Media, PA - The Weather Channel | weather.com](https://weather.com/weather/tenday/l/87caf1c81805e616360db8b7fd3115b5fc6d0e8e30fc33363e3f2c9e11ec6c02).
+ The viewport shows 14% of the webpage, and is positioned at the top of the page 
+The following metadata was extracted from the webpage:
+
+{
+    "jsonld": [
+        "{\n\t\"@context\": \"http://schema.org\",\n\t\"@type\": \"Organization\",\n\t\"name\": \"The Weather Channel\",\n\t\"url\": \"https://www.weather.com\",\n\t\"sameAs\": [\n\t\t\"https://twitter.com/weatherchannel\",\n\t\t\"https://www.instagram.com/weatherchannel/\",\n\t\t\"https://www.tiktok.com/@weatherchannel\",\n\t\t\"https://www.youtube.com/@TheWeatherChannel\",\n\t\t\"https://www.linkedin.com/company/the-weather-channel\",\n\t\t\"https://www.pinterest.com/weatherchannel/\"\n\t],\n\t\"logo\": {\n\t\t\"@type\": \"ImageObject\",\n\t\t\"url\": \"https://s.w-x.co/240x180_twc_default.png\"\n\t}\n}",
+        "{\n\t\"@context\": \"http://schema.org\",\n\t\"mainEntityOfPage\": {\n\t\t\"@type\": \"WebPage\",\n\t\t\"@id\": \"https://www.weather.com/weather/tenday/l/87caf1c81805e616360db8b7fd3115b5fc6d0e8e30fc33363e3f2c9e11ec6c02\",\n\t\t\"relatedLink\": \"https://www.weather.com/weather/tenday/l/87caf1c81805e616360db8b7fd3115b5fc6d0e8e30fc33363e3f2c9e11ec6c02\"\n\t},\n\t\"publisher\": {\n\t\t\"@type\": \"Organization\",\n\t\t\"name\": \"The Weather Channel\",\n\t\t\"url\": \"https://www.weather.com\",\n\t\t\"sameAs\": [\n\t\t\t\"https://twitter.com/weatherchannel\",\n\t\t\t\"https://www.instagram.com/weatherchannel/\",\n\t\t\t\"https://www.tiktok.com/@weatherchannel\",\n\t\t\t\"https://www.youtube.com/@TheWeatherChannel\",\n\t\t\t\"https://www.linkedin.com/company/the-weather-channel\",\n\t\t\t\"https://www.pinterest.com/weatherchannel/\"\n\t\t],\n\t\t\"logo\": {\n\t\t\t\"@type\": \"ImageObject\",\n\t\t\t\"url\": \"https://s.w-x.co/240x180_twc_default.png\"\n\t\t}\n\t},\n\t\"name\": \"The Weather Channel\",\n\t\"author\": {\n\t\t\"@type\": \"Organization\",\n\t\t\"name\": \"The Weather Channel\",\n\t\t\"url\": \"https://www.weather.com\",\n\t\t\"sameAs\": [\n\t\t\t\"https://twitter.com/weatherchannel\",\n\t\t\t\"https://www.instagram.com/weatherchannel/\",\n\t\t\t\"https://www.tiktok.com/@weatherchannel\",\n\t\t\t\"https://www.youtube.com/@TheWeatherChannel\",\n\t\t\t\"https://www.linkedin.com/company/the-weather-channel\",\n\t\t\t\"https://www.pinterest.com/weatherchannel/\"\n\t\t],\n\t\t\"logo\": {\n\t\t\t\"@type\": \"ImageObject\",\n\t\t\t\"url\": \"https://s.w-x.co/240x180_twc_default.png\"\n\t\t}\n\t},\n\t\"@type\": \"WebSite\",\n\t\"headline\": \"10-Day Weather Forecast for Media, PA - The Weather Channel | weather.com\",\n\t\"description\": \"Be prepared with the most accurate 10-day forecast for Media, PA with highs, lows, chance of precipitation from The Weather Channel and Weather.com\",\n\t\"url\": \"https://www.weather.com/weather/tenday/l/87caf1c81805e616360db8b7fd3115b5fc6d0e8e30fc33363e3f2c9e11ec6c02\"\n}",
+        "{\n\t\"@context\": \"http://schema.org\",\n\t\"@type\": \"Place\",\n\t\"address\": {\n\t\t\"@type\": \"PostalAddress\",\n\t\t\"addressLocality\": \"Media\",\n\t\t\"addressRegion\": \"Pennsylvania\",\n\t\t\"addressCountry\": \"US\",\n\t\t\"postalCode\": \"19037\"\n\t},\n\t\"geo\": {\n\t\t\"@type\": \"GeoCoordinates\",\n\t\t\"latitude\": 39.921,\n\t\t\"longitude\": -75.39,\n\t\t\"addressCountry\": \"US\",\n\t\t\"postalCode\": \"19037\"\n\t},\n\t\"name\": \"Media, PA\"\n}"
+    ],
+    "meta_tags": {
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "robots": "index, follow",
+        "referrer": "origin",
+        "description": "Be prepared with the most accurate 10-day forecast for Media, PA with highs, lows, chance of precipitation from The Weather Channel and Weather.com",
+        "msapplication-TileColor": "#ffffff",
+        "msapplication-TileImage": "/daily/assets/ms-icon-144x144.d353af.png",
+        "theme-color": "#ffffff",
+        "apple-itunes-app": "app-id=295646461",
+        "og:title": "10-Day Weather Forecast for Media, PA - The Weather Channel | weather.com",
+        "og:image": "https://s.w-x.co/240x180_twc_default.png",
+        "og:image:url": "https://s.w-x.co/240x180_twc_default.png",
+        "og:image:secure_url": "https://s.w-x.co/240x180_twc_default.png",
+        "og:site_name": "The Weather Channel",
+        "og:type": "article",
+        "og:locale": "en_US",
+        "og:description": "Be prepared with the most accurate 10-day forecast for Media, PA with highs, lows, chance of precipitation from The Weather Channel and Weather.com",
+        "og:url": "https://weather.com/weather/tenday/l/Rose+Valley+PA?canonicalCityId=adb7d7b72373da350047a294acfbcf0af88b0b3d23e07998ee5ac40c75cb5efb"
+    }
+}
+
+The first 50 lines of the page text is:
+
+Skip to Main Content
+Accessibility Help
+Type at least three characters to start auto complete. Recently searched locations will be displayed if there is no search query. The first option will be automatically selected. Use up and down arrows to change selection. Use escape to clear.
+Search City or Zip Code
+US
+°F
+GO PREMIUM
+User Account Menu
+SIGN UP
+35°
+Media, PA
+My Dashboard
+NEW
+Today
+Hourly
+10 Day
+Weekend
+Monthly
+Radar
+Winter
+More Forecasts
+10 Day Weather-Media, PA
+As of 11:19 am EST
+Today
+Partly Cloudy
+42°
+/27°
+1%
+NW 15 mph
+Sun 09 | Day
+42°
+1%
+NW
+15
+mph
+Partly to mostly cloudy. High 42F. Winds NW at 10 to 20 mph.
+0 seconds of 37 secondsVolume 90%
+Heads-up
+Double Trouble This Week: More Winter Storms
+Humidity
+61%
+UV Index
+2 of 11
+<image>
+---------- MagenticOneOrchestrator ----------
+Based on the current weather forecast for Media, PA from The Weather Channel, there is no snow expected today. The forecast indicates partly to mostly cloudy conditions with temperatures around 42°F during the day and 27°F at night, with only a 1% chance of precipitation today.
+/Users/welcome/anaconda3/envs/autogen_0_4/lib/python3.11/asyncio/selector_events.py:868: ResourceWarning: unclosed transport <_SelectorSocketTransport fd=9>
+  _warn(f"unclosed transport {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+
+Process finished with exit code 0
