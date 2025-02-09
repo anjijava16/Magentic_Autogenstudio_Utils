@@ -9,3 +9,17 @@ https://github.com/microsoft/autogen/tree/main/python/packages/autogen-magentic-
 
 
 
+# Install
+
+
+
+ 1013  pip install "autogen-ext[magentic-one,openai]"
+
+ 1017  cd magentic-one-cli
+ 
+ 1018  ls -ltr
+ 
+ 1019  pip install -e .
+ 
+ 1020  playwright install --with-deps chromium
+ 
