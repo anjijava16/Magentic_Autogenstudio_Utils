@@ -15,7 +15,9 @@ https://github.com/microsoft/autogen/tree/main/python/packages/autogen-magentic-
 
  1013  pip install "autogen-ext[magentic-one,openai]"
 
- 1017  cd magentic-one-cli
+  cd autogen/python/packages/
+
+ cd magentic-one-cli
  
  1018  ls -ltr
  
