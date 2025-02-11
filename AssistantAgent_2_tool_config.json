@@ -1,0 +1,206 @@
+{
+  "provider": "autogen_agentchat.teams.RoundRobinGroupChat",
+  "component_type": "team",
+  "version": 1,
+  "component_version": 1,
+  "description": "A single AssistantAgent (with a calculator tool) in a RoundRobinGroupChat team. ",
+  "label": "default_team17",
+  "config": {
+    "participants": [
+      {
+        "provider": "autogen_agentchat.agents.AssistantAgent",
+        "component_type": "agent",
+        "version": 1,
+        "component_version": 1,
+        "description": "An agent that provides assistance with tool use.",
+        "label": "AssistantAgent",
+        "config": {
+          "name": "assistant_agent",
+          "model_client": {
+            "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+            "component_type": "model",
+            "version": 1,
+            "component_version": 1,
+            "description": "Chat completion client for OpenAI hosted models.",
+            "label": "OpenAIChatCompletionClient",
+            "config": {
+              "model": "gpt-4o-mini"
+            }
+          },
+          "tools": [
+            {
+              "provider": "autogen_core.tools.FunctionTool",
+              "component_type": "tool",
+              "version": 1,
+              "component_version": 1,
+              "description": "Create custom tools by wrapping standard Python functions.",
+              "label": "FunctionTool",
+              "config": {
+                "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == \"+\":\n            return str(a + b)\n        elif operator == \"-\":\n            return str(a - b)\n        elif operator == \"*\":\n            return str(a * b)\n        elif operator == \"/\":\n            if b == 0:\n                return \"Error: Division by zero\"\n            return str(a / b)\n        else:\n            return \"Error: Invalid operator. Please use +, -, *, or /\"\n    except Exception as e:\n        return f\"Error: {str(e)}\"\n",
+                "name": "calculator",
+                "description": "A simple calculator that performs basic arithmetic operations",
+                "global_imports": [],
+                "has_cancellation_support": false
+              }
+            },
+            {
+              "provider": "autogen_core.tools.FunctionTool",
+              "component_type": "tool",
+              "version": 1,
+              "component_version": 1,
+              "description": "A tool that generates a PDF file from a list of images.Requires the PyFPDF and pillow library to function.",
+              "label": "PDF Generation Tool",
+              "config": {
+                "source_code": "async def generate_pdf(\n    sections: List[Dict[str, Optional[str]]], output_file: str = \"report.pdf\", report_title: str = \"PDF Report\"\n) -> str:\n    \"\"\"\n    Generate a PDF report with formatted sections including text and images.\n\n    Args:\n        sections: List of dictionaries containing section details with keys:\n            - title: Section title\n            - level: Heading level (title, h1, h2)\n            - content: Section text content\n            - image: Optional image URL or file path\n        output_file: Name of output PDF file\n        report_title: Title shown at top of report\n\n    Returns:\n        str: Path to the generated PDF file\n    \"\"\"\n\n    def normalize_text(text: str) -> str:\n        \"\"\"Normalize Unicode text to ASCII.\"\"\"\n        return unicodedata.normalize(\"NFKD\", text).encode(\"ascii\", \"ignore\").decode(\"ascii\")\n\n    def get_image(image_url_or_path):\n        \"\"\"Fetch image from URL or local path.\"\"\"\n        if image_url_or_path.startswith((\"http://\", \"https://\")):\n            response = requests.get(image_url_or_path)\n            if response.status_code == 200:\n                return BytesIO(response.content)\n        elif Path(image_url_or_path).is_file():\n            return open(image_url_or_path, \"rb\")\n        return None\n\n    def add_rounded_corners(img, radius=6):\n        \"\"\"Add rounded corners to an image.\"\"\"\n        mask = Image.new(\"L\", img.size, 0)\n        draw = ImageDraw.Draw(mask)\n        draw.rounded_rectangle([(0, 0), img.size], radius, fill=255)\n        img = ImageOps.fit(img, mask.size, centering=(0.5, 0.5))\n        img.putalpha(mask)\n        return img\n\n    class PDF(FPDF):\n        \"\"\"Custom PDF class with header and content formatting.\"\"\"\n\n        def header(self):\n            self.set_font(\"Arial\", \"B\", 12)\n            normalized_title = normalize_text(report_title)\n            self.cell(0, 10, normalized_title, 0, 1, \"C\")\n\n        def chapter_title(self, txt):\n            self.set_font(\"Arial\", \"B\", 12)\n            normalized_txt = normalize_text(txt)\n            self.cell(0, 10, normalized_txt, 0, 1, \"L\")\n            self.ln(2)\n\n        def chapter_body(self, body):\n            self.set_font(\"Arial\", \"\", 12)\n            normalized_body = normalize_text(body)\n            self.multi_cell(0, 10, normalized_body)\n            self.ln()\n\n        def add_image(self, img_data):\n            img = Image.open(img_data)\n            img = add_rounded_corners(img)\n            img_path = Path(f\"temp_{uuid.uuid4().hex}.png\")\n            img.save(img_path, format=\"PNG\")\n            self.image(str(img_path), x=None, y=None, w=190 if img.width > 190 else img.width)\n            self.ln(10)\n            img_path.unlink()\n\n    # Initialize PDF\n    pdf = PDF()\n    pdf.add_page()\n    font_size = {\"title\": 16, \"h1\": 14, \"h2\": 12, \"body\": 12}\n\n    # Add sections\n    for section in sections:\n        title = section.get(\"title\", \"\")\n        level = section.get(\"level\", \"h1\")\n        content = section.get(\"content\", \"\")\n        image = section.get(\"image\")\n\n        pdf.set_font(\"Arial\", \"B\" if level in font_size else \"\", font_size.get(level, font_size[\"body\"]))\n        pdf.chapter_title(title)\n\n        if content:\n            pdf.chapter_body(content)\n\n        if image:\n            img_data = get_image(image)\n            if img_data:\n                pdf.add_image(img_data)\n                if isinstance(img_data, BytesIO):\n                    img_data.close()\n\n    pdf.output(output_file)\n    return output_file\n",
+                "name": "generate_pdf",
+                "description": "Generate PDF reports with formatted sections containing text and images",
+                "global_imports": [
+                  "uuid",
+                  "requests",
+                  "unicodedata",
+                  {
+                    "module": "typing",
+                    "imports": [
+                      "List",
+                      "Dict",
+                      "Optional"
+                    ]
+                  },
+                  {
+                    "module": "pathlib",
+                    "imports": [
+                      "Path"
+                    ]
+                  },
+                  {
+                    "module": "fpdf",
+                    "imports": [
+                      "FPDF"
+                    ]
+                  },
+                  {
+                    "module": "PIL",
+                    "imports": [
+                      "Image",
+                      "ImageDraw",
+                      "ImageOps"
+                    ]
+                  },
+                  {
+                    "module": "io",
+                    "imports": [
+                      "BytesIO"
+                    ]
+                  }
+                ],
+                "has_cancellation_support": false
+              }
+            }
+          ],
+          "handoffs": [],
+          "model_context": {
+            "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+            "component_type": "chat_completion_context",
+            "version": 1,
+            "component_version": 1,
+            "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+            "label": "UnboundedChatCompletionContext",
+            "config": {}
+          },
+          "description": "An agent that provides assistance with ability to use tools.",
+          "system_message": "You are a helpful assistant. Solve tasks carefully. When done, say TERMINATE.",
+          "model_client_stream": false,
+          "reflect_on_tool_use": false,
+          "tool_call_summary_format": "{result}"
+        }
+      },
+      {
+        "provider": "autogen_agentchat.agents.AssistantAgent",
+        "component_type": "agent",
+        "version": 1,
+        "component_version": 1,
+        "description": "An agent that provides assistance with ability to use tools.",
+        "label": "AssistantAgent",
+        "config": {
+          "name": "assistant_agent_1",
+          "model_client": {
+            "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+            "component_type": "model",
+            "version": 1,
+            "component_version": 1,
+            "description": "Chat completion client for OpenAI hosted models.",
+            "label": "OpenAIChatCompletionClient",
+            "config": {
+              "model": "gpt-4o-mini"
+            }
+          },
+          "tools": [
+            {
+              "provider": "autogen_core.tools.FunctionTool",
+              "component_type": "tool",
+              "version": 1,
+              "component_version": 1,
+              "description": "Create custom tools by wrapping standard Python functions.",
+              "label": "FunctionTool",
+              "config": {
+                "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == \"+\":\n            return str(a + b)\n        elif operator == \"-\":\n            return str(a - b)\n        elif operator == \"*\":\n            return str(a * b)\n        elif operator == \"/\":\n            if b == 0:\n                return \"Error: Division by zero\"\n            return str(a / b)\n        else:\n            return \"Error: Invalid operator. Please use +, -, *, or /\"\n    except Exception as e:\n        return f\"Error: {str(e)}\"\n",
+                "name": "calculator",
+                "description": "A simple calculator that performs basic arithmetic operations",
+                "global_imports": [],
+                "has_cancellation_support": false
+              }
+            }
+          ],
+          "handoffs": [],
+          "model_context": {
+            "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+            "component_type": "chat_completion_context",
+            "version": 1,
+            "component_version": 1,
+            "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+            "label": "UnboundedChatCompletionContext",
+            "config": {}
+          },
+          "description": "An agent that provides assistance with ability to use tools.",
+          "system_message": "You are a helpful assistant. Solve tasks carefully. When done, say TERMINATE.",
+          "model_client_stream": false,
+          "reflect_on_tool_use": false,
+          "tool_call_summary_format": "{result}"
+        }
+      }
+    ],
+    "termination_condition": {
+      "provider": "autogen_agentchat.base.OrTerminationCondition",
+      "component_type": "termination",
+      "version": 1,
+      "component_version": 1,
+      "label": "OrTerminationCondition",
+      "config": {
+        "conditions": [
+          {
+            "provider": "autogen_agentchat.conditions.TextMentionTermination",
+            "component_type": "termination",
+            "version": 1,
+            "component_version": 1,
+            "description": "Terminate the conversation if a specific text is mentioned.",
+            "label": "TextMentionTermination",
+            "config": {
+              "text": "TERMINATE"
+            }
+          },
+          {
+            "provider": "autogen_agentchat.conditions.MaxMessageTermination",
+            "component_type": "termination",
+            "version": 1,
+            "component_version": 1,
+            "description": "Terminate the conversation after a maximum number of messages have been exchanged.",
+            "label": "MaxMessageTermination",
+            "config": {
+              "max_messages": 10
+            }
+          }
+        ]
+      }
+    }
+  }
+}
