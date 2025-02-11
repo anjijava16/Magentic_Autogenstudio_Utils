@@ -158,3 +158,8 @@ async def run(
 ```
 
 
+# Autogenstudio end to end flow
+
+![image](https://github.com/user-attachments/assets/32518bbc-7a14-4225-a053-5788fbf6d8e5)
+
+
