@@ -1,4 +1,5 @@
 # Magentic_autogen
+
 Autogen Magentic
 
 
@@ -9,7 +10,7 @@ https://github.com/microsoft/autogen/tree/main/python/packages/autogen-magentic-
 
 
 
-# Install
+## Install
 
  1013  pip install "autogen-ext[magentic-one,openai]"
 
@@ -25,9 +26,10 @@ https://github.com/microsoft/autogen/tree/main/python/packages/autogen-magentic-
 
 
 
- # Autogenstudio Installation
+# Autogenstudio Installation
  
 welcome@jaisairams-Laptop ~ % source ~/.zprofile.sh
+
 
 welcome@jaisairams-Laptop ~ % conda create -n autogen_studio
 
