@@ -88,3 +88,73 @@ URL : http://localhost:8084/docs#/default/predict_predict__task__get
 ![image](https://github.com/user-attachments/assets/dec31bef-e198-4539-9cc6-6bda0a3d56c0)
 
 
+### Flow 
+1. Internally calling serve.py file
+
+2. <img width="1728" alt="image" src="https://github.com/user-attachments/assets/c4c839f2-4e2f-41c8-8789-e372d97fffd0" />
+
+```
+
+import json
+import os
+
+from fastapi import FastAPI
+
+from ..datamodel import Response
+from ..teammanager import TeamManager
+
+app = FastAPI()
+team_file_path = os.environ.get("AUTOGENSTUDIO_TEAM_FILE", None)
+
+
+if team_file_path:
+    team_manager = TeamManager()
+else:
+    raise ValueError("Team file must be specified")
+
+
+@app.get("/predict/{task}")
+async def predict(task: str):
+    response = Response(message="Task successfully completed", status=True, data=None)
+    try:
+        result_message = await team_manager.run(task=task, team_config=team_file_path)
+        response.data = result_message
+    except Exception as e:
+        response.message = str(e)
+        response.status = False
+    return response
+
+
+```
+
+
+3. Calling team_manager.run (teammanager.py ) file
+
+```
+async def run(
+        self,
+        task: str,
+        team_config: Union[str, Path, dict, ComponentModel],
+        input_func: Optional[Callable] = None,
+        cancellation_token: Optional[CancellationToken] = None,
+    ) -> TeamResult:
+        """Run team synchronously"""
+        start_time = time.time()
+        team = None
+
+        try:
+            team = await self._create_team(team_config, input_func)
+            result = await team.run(task=task, cancellation_token=cancellation_token)
+
+            return TeamResult(task_result=result, usage="", duration=time.time() - start_time)
+
+        finally:
+            # Ensure cleanup happens
+            if team and hasattr(team, "_participants"):
+                for agent in team._participants:
+                    if hasattr(agent, "close"):
+                        await agent.close()
+
+```
+
+
